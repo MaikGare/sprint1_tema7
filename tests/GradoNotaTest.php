@@ -1,9 +1,9 @@
 <?php 
 
-namespace Miquelgarcia\lvl1Ex2\tests;
+namespace Miquelgarcia\tests;
 
 use PHPUnit\Framework\TestCase;
-use Miquelgarcia\lvl1Ex2\GradoNota;
+use Miquelgarcia\Lvl1Ex2\GradoNota;
 
 class GradoNotaTest extends TestCase{
 
