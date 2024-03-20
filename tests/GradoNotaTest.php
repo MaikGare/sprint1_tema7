@@ -1,38 +1,28 @@
 <?php 
 
-namespace Miquelgarcia\lvl1Ex2\tests;
+namespace Miquelgarcia\Lvl1Ex2\tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Miquelgarcia\lvl1Ex2\GradoNota;
+use Miquelgarcia\Lvl1Ex2\GradoNota;
+
 
 class GradoNotaTest extends TestCase{
 
-    public function testGradoNotaPrimeraDivision(){
-
-        $gradoNota = new GradoNota();
-
-        $this->assertEquals("El grado es de primera división.", $gradoNota->verificarGrado(68));
+    public static function listaNotas() : array{
+        return [[68,"El grado es de primera división."],
+                [53,"El grado es de segunda división."],
+                [37,"El grado es de tercera división."],
+                [8,"El estudiante está reprobado."]];
     }
 
-    public function testGradoNotaSegundaDivision(){
+    #[DataProvider('listaNotas')]
+    public function testGradoNota(int $nota, string $expected) : void{
 
         $gradoNota = new GradoNota();
+        $resultado = $gradoNota->verificarGrado($nota);
 
-        $this->assertEquals("El grado es de segunda división.", $gradoNota->verificarGrado(53));
-    }
-
-    public function testGradoNotaTerceraDivision(){
-
-        $gradoNota = new GradoNota();
-
-        $this->assertEquals("El grado es de tercera división.", $gradoNota->verificarGrado(37));
-    }
-
-    public function testGradoNotaReprobado(){
-
-        $gradoNota = new GradoNota();
-
-        $this->assertEquals("El estudiante está reprobado.", $gradoNota->verificarGrado(8));
+        $this->assertEquals($expected,$resultado);
     }
 }
 
