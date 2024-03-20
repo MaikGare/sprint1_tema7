@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Miquelgarcia\Lvl1Ex1;
 class NumberChecker  {

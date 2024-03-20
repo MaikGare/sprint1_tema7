@@ -1,34 +1,32 @@
-<?php 
+<?php declare(strict_types= 1);
 namespace Miquelgarcia\tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Miquelgarcia\Lvl1Ex1\NumberChecker;
 
-class NumberCheckerTest extends TestCase{
+final class NumberCheckerTest extends TestCase{
 
-    public function testIsEven(){
-        $numberChecker1 = new NumberChecker(3);
+    public static function listaNumerosPar() : array{
+        return [[1, false],[4, true],[7, false],[10, true]];
+    }
+    #[DataProvider('listaNumerosPar')]
+    public function testIsEven(int $numero, bool $respuestaEsperada){
 
-        $this->assertEquals(false, $numberChecker1->isEven());
-
-        $numberChecker2 = new NumberChecker(2);
-
-        $this->assertEquals(true, $numberChecker2->isEven());
-
-
+        $numberChecker = new NumberChecker($numero);
+        $respuestaCorrecta = $numberChecker->isEven();
+        $this->assertEquals($respuestaEsperada,$respuestaCorrecta);
     }
 
-    public function testIsPositive(){
-        $numberChecker = new NumberChecker(-2);
-
-        $this->assertEquals(false, $numberChecker->isPositive());
-
-        $numberChecker2 = new NumberChecker(5);
-
-        $this->assertEquals(true, $numberChecker2->isPositive());
+    public static function listaNumerosPositivo() : array{
+        return [[-1, false],[4, true],[-7, false],[10, true]];
+    }
+    #[DataProvider('listaNumerosPositivo')]
+    public function testIsPositive(int $numero, bool $respuestaEsperada){
+        $numberChecker = new NumberChecker($numero);
+        $respuestaCorrecta = $numberChecker->isPositive();
+        $this->assertEquals($respuestaEsperada,$respuestaCorrecta);
     }
 }
-
-
 
 ?>
